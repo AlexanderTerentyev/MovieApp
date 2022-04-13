@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
 
-    <string name="movie_details_end_game">Avengers: \nEnd Game</string>
+    <string name="movie_details_avengers_end_game">Avengers: \nEnd Game</string>
     <string name="movie_details_back">Back</string>
     <string name="movie_details_action_adventure_fantasy">Action, Adventure, Fantasy</string>
     <string name="movie_details_125_reviews">125 reviews</string>
@@ -13,6 +13,11 @@
     <string name="movie_details_robert_downey_jr">Robert Downey Jr.</string>
     <string name="movie_details_chris_evans">Chris Evans</string>
     <string name="movie_details_mark_ruffalo">Mark Ruffalo</string>
-    <string name="movie_details_chris_hemsworth">Chris \nHemsworth</string>
+    <string name="movie_details_chris_hemsworth">Chris Hemsworth</string>
     <string name="age_13">13+</string>
+    <string name="movies_list_title">Movies list</string>
+    <string name="movie_details_action_adventure_drama">Action, Adventure, Drama</string>
+    <string name="movie_list_avengers_end_game">Avengers: End Game</string>
+
+
 </resources>

@@ -7,6 +7,7 @@
     android:background="@color/movie_details_background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/avengers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="100dp"
@@ -19,7 +20,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/movie_details_header"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,11 +46,11 @@
             android:textColor="@color/light_gray"
             android:textSize="12sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/text_title_bottom"
-            app:layout_constraintStart_toStartOf="@id/text_title_bottom" />
+            app:layout_constraintBottom_toTopOf="@id/text_title"
+            app:layout_constraintStart_toStartOf="@id/text_title" />
 
         <TextView
-            android:id="@+id/text_title_bottom"
+            android:id="@+id/text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -70,7 +71,7 @@
             android:text="@string/movie_details_action_adventure_fantasy"
             android:textColor="@color/pink_dark"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_title_bottom" />
+            app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
         <RatingBar
             android:id="@+id/movie_list_rating"
@@ -230,8 +231,7 @@
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageview_chris_hemsworth"
-            app:layout_constraintTop_toBottomOf="@+id/imageview_chris_hemsworth"
-            app:layout_constraintEnd_toEndOf="@+id/imageview_chris_hemsworth"/>
+            app:layout_constraintTop_toBottomOf="@+id/imageview_chris_hemsworth" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

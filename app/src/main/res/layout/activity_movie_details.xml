@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@string/movie_details_end_game"
+            android:text="@string/movie_details_avengers_end_game"
             android:textColor="@color/white"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -73,7 +73,7 @@
             app:layout_constraintTop_toBottomOf="@+id/text_title_bottom" />
 
         <RatingBar
-            android:id="@+id/movie_details_rating"
+            android:id="@+id/movie_list_rating"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,10 +94,10 @@
             android:textAllCaps="true"
             android:textColor="@color/gray"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/movie_details_rating"
-            app:layout_constraintStart_toEndOf="@+id/movie_details_rating"
+            app:layout_constraintBottom_toBottomOf="@+id/movie_list_rating"
+            app:layout_constraintStart_toEndOf="@+id/movie_list_rating"
             app:layout_constraintTop_toBottomOf="@+id/text_genre"
-            app:layout_constraintTop_toTopOf="@+id/movie_details_rating" />
+            app:layout_constraintTop_toTopOf="@+id/movie_list_rating" />
 
         <TextView
             android:id="@+id/text_storyline"
@@ -110,7 +110,7 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movie_details_rating" />
+            app:layout_constraintTop_toBottomOf="@+id/movie_list_rating" />
 
         <TextView
             android:id="@+id/text_description"
