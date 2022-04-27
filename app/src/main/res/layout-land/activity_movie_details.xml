@@ -62,7 +62,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageview_header" />
 
         <TextView
-            android:id="@+id/text_genre"
+            android:id="@+id/text_view_genre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -73,7 +73,7 @@
             app:layout_constraintTop_toBottomOf="@+id/text_title_bottom" />
 
         <RatingBar
-            android:id="@+id/movie_list_rating"
+            android:id="@+id/rating_bar_movie_list"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,10 +83,10 @@
             android:progressTint="@color/pink"
             android:rating="4"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_genre" />
+            app:layout_constraintTop_toBottomOf="@+id/text_view_genre" />
 
         <TextView
-            android:id="@+id/text_reviews"
+            android:id="@+id/text_view_reviews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8.89dp"
@@ -94,10 +94,10 @@
             android:textAllCaps="true"
             android:textColor="@color/gray"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/movie_list_rating"
-            app:layout_constraintStart_toEndOf="@+id/movie_list_rating"
-            app:layout_constraintTop_toBottomOf="@+id/text_genre"
-            app:layout_constraintTop_toTopOf="@+id/movie_list_rating" />
+            app:layout_constraintBottom_toBottomOf="@+id/rating_bar_movie_list"
+            app:layout_constraintStart_toEndOf="@+id/rating_bar_movie_list"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_genre"
+            app:layout_constraintTop_toTopOf="@+id/rating_bar_movie_list" />
 
         <TextView
             android:id="@+id/text_storyline"
@@ -110,7 +110,7 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movie_list_rating" />
+            app:layout_constraintTop_toBottomOf="@+id/rating_bar_movie_list" />
 
         <TextView
             android:id="@+id/text_description"
