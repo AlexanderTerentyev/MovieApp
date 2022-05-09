@@ -4,13 +4,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import ru.myfirstapp.movieapp.R
+import ru.myfirstapp.movieapp.data.Movie
 
 class MoviesAdapter(
-    private val onFilmClicked: () -> Unit
+    private val onFilmClicked: (movieId: Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 ) {
 
@@ -19,10 +22,10 @@ class MoviesAdapter(
         const val TYPE_MOVIES = R.layout.movie_item
     }
 
-    private var movieList: List<MovieData> = emptyList()
+    private var moviesList: List<Movie> = emptyList()
 
-    fun bindMovies(newMovie: List<MovieData>) {
-        movieList = newMovie
+    fun bindMovies(newMovie: List<Movie>) {
+        moviesList = newMovie
         notifyDataSetChanged()
     }
 
@@ -35,21 +38,24 @@ class MoviesAdapter(
         private val durationMovie = layout.findViewById<TextView>(R.id.text_view_duration)
         private val genreMovie = layout.findViewById<TextView>(R.id.text_view_genre)
         private val reviewMovie = layout.findViewById<TextView>(R.id.text_view_reviews)
+        private val ratings = layout.findViewById<RatingBar>(R.id.rating_bar_movie_list)
 
-        fun bind(movieData: MovieData) {
-            item.setOnClickListener { onFilmClicked() }
-            nameMovie.text = movieData.name
-            avatarMovie.setImageResource(movieData.avatar)
-            ageMovie.text = movieData.age
-            durationMovie.text = movieData.time
-            genreMovie.text = movieData.genre
-            reviewMovie.text = movieData.review
+
+        fun bind(movieData: Movie) {
+            item.setOnClickListener { onFilmClicked(movieData.id) }
+            nameMovie.text = movieData.title
+            Glide.with(item.context)
+                .load(movieData.poster)
+                .into(avatarMovie)
+            ageMovie.text = movieData.minimumAge.toString() + "+"
+            ratings.rating = movieData.ratings/2
+            durationMovie.text = movieData.runtime.toString() + " MIN"
+            genreMovie.text = movieData.genres.map { it.name }.joinToString()
+            reviewMovie.text = movieData.numberOfRatings.toString() + " REVIEWS"
         }
     }
 
-    inner class HeaderViewHolder(layout: View) : RecyclerView.ViewHolder(layout) {
-        private val item = layout.findViewById<TextView>(R.id.text_view_movies_list)
-    }
+    inner class HeaderViewHolder(layout: View) : RecyclerView.ViewHolder(layout)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -70,12 +76,15 @@ class MoviesAdapter(
         }
     }
 
-    private fun getItem(position: Int): MovieData = movieList[position - 1]
+    private fun getItem(position: Int): Movie = moviesList[position - 1]
 
-    override fun getItemCount(): Int = movieList.size + 1
+    override fun getItemCount(): Int = moviesList.size + 1
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == 0) TYPE_HEADER else TYPE_MOVIES
+        return when (position) {
+            0 -> TYPE_HEADER
+            else -> TYPE_MOVIES
+        }
     }
 }
 

@@ -7,25 +7,33 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import ru.myfirstapp.movieapp.R
+import ru.myfirstapp.movieapp.data.Actor
 
 class ActorsAdapter : RecyclerView.Adapter<ActorsAdapter.ViewHolder>() {
 
-    private var actorList: List<ActorData> = emptyList()
+    private var actorList: List<Actor> = emptyList()
 
-    fun bindActors(newActors: List<ActorData>) {
+    fun bindActors(newActors: List<Actor>) {
         actorList = newActors
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(layout: View) : RecyclerView.ViewHolder(layout) {
-        private val nameView = layout.findViewById<TextView>(R.id.text_view_actor)
-        private val avatarView = layout.findViewById<ImageView>(R.id.image_view_actor)
+    inner class ViewHolder(private val layout: View) : RecyclerView.ViewHolder(layout) {
+        private val nameActor = layout.findViewById<TextView>(R.id.text_view_actor)
+        private val avatarActor = layout.findViewById<ImageView>(R.id.image_view_actor)
 
-        fun bind(actorData: ActorData) {
-            nameView.text = actorData.name
-
-            avatarView.setImageResource(actorData.avatar)
+        fun bind(actorData: Actor) {
+            if (actorList.isNotEmpty()) {
+                nameActor.text = actorData.name
+                Glide.with(layout.context)
+                    .load(actorData.picture)
+                    .apply(RequestOptions().centerCrop())
+                    .placeholder(R.drawable.chris_evans)
+                    .into(avatarActor)
+            }
         }
     }
 
