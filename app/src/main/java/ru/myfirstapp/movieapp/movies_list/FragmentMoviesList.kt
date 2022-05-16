@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import ru.myfirstapp.movieapp.R
-import ru.myfirstapp.movieapp.data.loadMovies
 import ru.myfirstapp.movieapp.movie_details.FragmentMoviesDetails
 
 class FragmentMoviesList : Fragment() {
 
-    private val scope = CoroutineScope(Dispatchers.Default)
+    private val viewModel: MoviesListViewModel by viewModels {
+        ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,9 +44,8 @@ class FragmentMoviesList : Fragment() {
         recyclerMovie.adapter = adapter
         recyclerMovie.setHasFixedSize(true)
 
-        scope.launch(Dispatchers.Main) {
-            val movies = loadMovies(requireContext())
-            adapter.bindMovies(movies)
+        viewModel.moviesList.observe(this.viewLifecycleOwner) {
+            adapter.bindMovies(it)
         }
     }
 }
