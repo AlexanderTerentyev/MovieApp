@@ -8,10 +8,14 @@ import ru.myfirstapp.movieapp.data.loadMovies
 
 class MoviesListViewModel(app: Application) : AndroidViewModel(app) {
 
+    init {
+        loadMovies()
+    }
+
     private val _moviesList: MutableLiveData<List<Movie>> = MutableLiveData()
     val moviesList: LiveData<List<Movie>> get() = _moviesList
 
-    fun addMovie() {
+    private fun loadMovies() {
         viewModelScope.launch {
             val newMovie = loadMovies(getApplication<Application>().applicationContext)
             _moviesList.postValue(newMovie)

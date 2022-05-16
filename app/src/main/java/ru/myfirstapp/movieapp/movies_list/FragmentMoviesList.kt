@@ -47,6 +47,5 @@ class FragmentMoviesList : Fragment() {
         viewModel.moviesList.observe(this.viewLifecycleOwner) {
             adapter.bindMovies(it)
         }
-        viewModel.addMovie()
     }
 }

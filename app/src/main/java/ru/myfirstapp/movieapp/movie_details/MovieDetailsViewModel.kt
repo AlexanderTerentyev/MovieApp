@@ -9,12 +9,16 @@ import kotlinx.coroutines.launch
 import ru.myfirstapp.movieapp.data.Movie
 import ru.myfirstapp.movieapp.data.loadMovies
 
-class MovieDetailsViewModel(val app: Application, val movieId: Int) : AndroidViewModel(app) {
+class MovieDetailsViewModel(val app: Application, private val movieId: Int) : AndroidViewModel(app) {
+
+    init {
+        loadMovie()
+    }
 
     private val _movie: MutableLiveData<Movie> = MutableLiveData()
     val movie: LiveData<Movie> get() = _movie
 
-    fun openMovieDetails() {
+    private fun loadMovie() {
         viewModelScope.launch {
             val movies = loadMovies(app.applicationContext)
             val movie: Movie = movies.first {

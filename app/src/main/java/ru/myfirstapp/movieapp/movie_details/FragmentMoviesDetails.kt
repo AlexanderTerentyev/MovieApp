@@ -73,9 +73,6 @@ class FragmentMoviesDetails : Fragment() {
             } else {
                 cast.visibility = View.VISIBLE
             }
-
         }
-        movieDetailsViewModel.openMovieDetails()
-
     }
 }
