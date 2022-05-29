@@ -1,16 +1,15 @@
-package ru.myfirstapp.movieapp.movie_details
+package ru.myfirstapp.movieapp.ui.movie_details
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import ru.myfirstapp.movieapp.R
-import ru.myfirstapp.movieapp.data.Actor
+import ru.myfirstapp.movieapp.domain.model.Actor
 
 class ActorsAdapter : RecyclerView.Adapter<ActorsAdapter.ViewHolder>() {
 

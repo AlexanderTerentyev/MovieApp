@@ -1,4 +1,4 @@
-package ru.myfirstapp.movieapp.movie_details
+package ru.myfirstapp.movieapp.ui.movie_details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,19 +18,19 @@ class FragmentMoviesDetails : Fragment() {
     companion object {
         const val MOVIE_ID = "MOVIE_ID"
 
-        fun newInstance(movieId: Int): FragmentMoviesDetails {
+        fun newInstance(movieId: Long): FragmentMoviesDetails {
             val bundle = Bundle()
-            bundle.putInt(MOVIE_ID, movieId)
+            bundle.putLong(MOVIE_ID, movieId)
             return FragmentMoviesDetails().apply {
                 arguments = bundle
             }
         }
     }
 
-    private val movieId: Int by lazy { requireNotNull(arguments?.getInt(MOVIE_ID)) }
+    private val movieId: Long by lazy { requireNotNull(arguments?.getLong(MOVIE_ID)) }
 
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModels {
-        MyViewModelFactory(
+        MovieDetailsViewModelFactory(
             requireActivity().application,
             movieId
         )
@@ -58,17 +58,19 @@ class FragmentMoviesDetails : Fragment() {
         recyclerActors.setHasFixedSize(true)
 
         movieDetailsViewModel.movie.observe(this.viewLifecycleOwner) { movie ->
-            adapter.bindActors(movie.actors)
             titleView.text = movie.title
             Glide.with(view.context)
                 .load(movie.backdrop)
                 .into(backdrop)
             overview.text = movie.overview
             minimumAge.text = movie.minimumAge.toString() + "+"
-            ratings.rating = movie.ratings / 2
+            ratings.rating = (movie.ratings / 2)
             numberOfRatings.text = movie.numberOfRatings.toString() + " REVIEWS"
             genres.text = movie.genres.map { it.name }.joinToString()
-            if (movie.actors.isEmpty()) {
+        }
+        movieDetailsViewModel.actors.observe(this.viewLifecycleOwner) { listActor ->
+            adapter.bindActors(listActor)
+            if (listActor.isEmpty()) {
                 cast.visibility = View.GONE
             } else {
                 cast.visibility = View.VISIBLE

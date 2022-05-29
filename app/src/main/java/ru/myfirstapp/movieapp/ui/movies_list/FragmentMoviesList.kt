@@ -1,4 +1,4 @@
-package ru.myfirstapp.movieapp.movies_list
+package ru.myfirstapp.movieapp.ui.movies_list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import ru.myfirstapp.movieapp.R
-import ru.myfirstapp.movieapp.movie_details.FragmentMoviesDetails
+import ru.myfirstapp.movieapp.ui.movie_details.FragmentMoviesDetails
 
 class FragmentMoviesList : Fragment() {
 
