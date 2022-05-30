@@ -1,4 +1,4 @@
-package ru.myfirstapp.movieapp.movies_list
+package ru.myfirstapp.movieapp.ui.movies_list
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +10,10 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.myfirstapp.movieapp.R
-import ru.myfirstapp.movieapp.data.Movie
+import ru.myfirstapp.movieapp.domain.model.Movie
 
 class MoviesAdapter(
-    private val onFilmClicked: (movieId: Int) -> Unit
+    private val onFilmClicked: (movieId: Long) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 ) {
 
@@ -48,7 +48,7 @@ class MoviesAdapter(
                 .load(movieData.poster)
                 .into(avatarMovie)
             ageMovie.text = movieData.minimumAge.toString() + "+"
-            ratings.rating = movieData.ratings/2
+            ratings.rating = (movieData.ratings/2)
             durationMovie.text = movieData.runtime.toString() + " MIN"
             genreMovie.text = movieData.genres.map { it.name }.joinToString()
             reviewMovie.text = movieData.numberOfRatings.toString() + " REVIEWS"

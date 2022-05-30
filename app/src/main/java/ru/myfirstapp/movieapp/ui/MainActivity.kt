@@ -1,8 +1,9 @@
-package ru.myfirstapp.movieapp
+package ru.myfirstapp.movieapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import ru.myfirstapp.movieapp.movies_list.FragmentMoviesList
+import ru.myfirstapp.movieapp.R
+import ru.myfirstapp.movieapp.ui.movies_list.FragmentMoviesList
 
 
 class MainActivity : AppCompatActivity() {

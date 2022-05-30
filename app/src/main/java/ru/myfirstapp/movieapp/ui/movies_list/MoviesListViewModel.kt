@@ -1,10 +1,10 @@
-package ru.myfirstapp.movieapp.movies_list
+package ru.myfirstapp.movieapp.ui.movies_list
 
 import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
-import ru.myfirstapp.movieapp.data.Movie
-import ru.myfirstapp.movieapp.data.loadMovies
+import ru.myfirstapp.movieapp.data.repository.MovieRepository
+import ru.myfirstapp.movieapp.domain.model.Movie
 
 class MoviesListViewModel(app: Application) : AndroidViewModel(app) {
 
@@ -17,8 +17,10 @@ class MoviesListViewModel(app: Application) : AndroidViewModel(app) {
 
     private fun loadMovies() {
         viewModelScope.launch {
-            val newMovie = loadMovies(getApplication<Application>().applicationContext)
-            _moviesList.postValue(newMovie)
+            val loadMovie: List<Movie> = MovieRepository().getMovies()
+            _moviesList.postValue(loadMovie)
         }
     }
 }
+
+
