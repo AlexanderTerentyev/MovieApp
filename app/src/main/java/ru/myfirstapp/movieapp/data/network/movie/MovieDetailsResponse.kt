@@ -4,8 +4,6 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import ru.myfirstapp.movieapp.data.model.GenreData
 
-//
-
 @Serializable
 data class MovieDetailsResponse(
     @SerialName("backdrop_path")

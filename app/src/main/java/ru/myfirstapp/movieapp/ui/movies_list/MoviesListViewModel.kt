@@ -1,12 +1,17 @@
 package ru.myfirstapp.movieapp.ui.movies_list
 
 import android.app.Application
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import ru.myfirstapp.movieapp.data.repository.MovieRepository
 import ru.myfirstapp.movieapp.domain.model.Movie
 
-class MoviesListViewModel(app: Application) : AndroidViewModel(app) {
+class MoviesListViewModel(val app: Application) : AndroidViewModel(app) {
 
     init {
         loadMovies()
@@ -17,10 +22,19 @@ class MoviesListViewModel(app: Application) : AndroidViewModel(app) {
 
     private fun loadMovies() {
         viewModelScope.launch {
-            val loadMovie: List<Movie> = MovieRepository().getMovies()
-            _moviesList.postValue(loadMovie)
+            val localMovies = withContext(Dispatchers.IO) {
+                MovieRepository().getMovieFromDatabase(app.applicationContext)
+            }
+            if (localMovies.isNotEmpty()) {
+                _moviesList.value = localMovies
+            }
+
+            val movieFromNetwork: List<Movie> = MovieRepository().getMovies()
+
+//            withContext(Dispatchers.IO) {
+//                MovieRepository().setMovieFromDatabase(app, movieFromNetwork)
+//            }
+//            _moviesList.value = movieFromNetwork
         }
     }
 }
-
-

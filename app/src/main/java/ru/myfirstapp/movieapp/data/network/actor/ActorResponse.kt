@@ -3,7 +3,6 @@ package ru.myfirstapp.movieapp.data.network.actor
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-
 @Serializable
 data class ActorsResponse(
     val id: Long,
@@ -17,6 +16,3 @@ data class ActorData(
     @SerialName("profile_path")
     val profilePath: String?,
 )
-
-
-

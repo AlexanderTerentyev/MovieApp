@@ -1,5 +1,6 @@
 package ru.myfirstapp.movieapp.data.mapper
 
+import ru.myfirstapp.movieapp.data.database.movies.MoviesEntity
 import ru.myfirstapp.movieapp.data.network.movie.MovieData
 import ru.myfirstapp.movieapp.data.network.movie.MovieDetailsResponse
 import ru.myfirstapp.movieapp.domain.model.Movie
@@ -38,6 +39,47 @@ object MovieMapperData {
             minimumAge = if (movieData.adult) 16 else 13,
             runtime = 0, //TODO()
             genres = emptyList(), // TODO()
+        )
+    }
+
+    fun mapListMoviesEntityToMovieList(listMoviesEntity: List<MoviesEntity>): List<Movie> {
+        return listMoviesEntity.map { movieEntity ->
+            mapMovieEntityToMovie(movieEntity)
+        }
+    }
+
+    private fun mapMovieEntityToMovie(movie: MoviesEntity): Movie {
+        return Movie(
+            id = movie.id,
+            title = movie.title,
+            overview = movie.overview,
+            poster = movie.poster,
+            backdrop = movie.backdrop,
+            ratings = movie.ratings,
+            numberOfRatings = movie.numberOfRatings,
+            minimumAge = movie.minimumAge,
+            runtime = 0, //TODO()
+            genres = emptyList(), // TODO()
+        )
+    }
+    fun mapListMovieToListMovieEntity(listMovie: List<Movie>): List<MoviesEntity> {
+        return listMovie.map { movie ->
+            mapMovieToMovieEntity(movie)
+        }
+    }
+
+    private fun mapMovieToMovieEntity(movie: Movie): MoviesEntity {
+        return MoviesEntity(
+            id = movie.id,
+            title = movie.title,
+            overview = movie.overview,
+            poster = movie.poster,
+            backdrop = movie.backdrop,
+            ratings = movie.ratings,
+            numberOfRatings = movie.numberOfRatings,
+            minimumAge = movie.minimumAge,
+            runtime = 0, //TODO()
+//            genres = emptyList(), // TODO()
         )
     }
 }
