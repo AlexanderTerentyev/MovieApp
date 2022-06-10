@@ -13,4 +13,3 @@ data class ImagesResponse(
     @SerialName("secure_base_url")
     val baseUrl: String
 )
-

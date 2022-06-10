@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import ru.myfirstapp.movieapp.data.network.actor.ActorData
 import ru.myfirstapp.movieapp.data.repository.ActorRepository
 import ru.myfirstapp.movieapp.data.repository.MovieRepository
 import ru.myfirstapp.movieapp.domain.model.Actor
@@ -26,7 +25,7 @@ class MovieDetailsViewModel(val app: Application, private val movieId: Long) : A
 
     private fun loadMovie() {
         viewModelScope.launch {
-            val movie: Movie = MovieRepository().getMovieById(movieId)
+            val movie: Movie = MovieRepository.getMovieById(movieId)
             _movie.postValue(movie)
             val actors = ActorRepository().getActorsByMovieId(movieId)
             _actors.postValue(actors)

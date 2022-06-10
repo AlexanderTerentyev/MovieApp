@@ -10,5 +10,5 @@ data class Movie(
     val numberOfRatings: Long,
     val minimumAge: Int,
     val runtime: Int,
-    val genres: List<Genre>,
+    val genres: List<Genre>
 )

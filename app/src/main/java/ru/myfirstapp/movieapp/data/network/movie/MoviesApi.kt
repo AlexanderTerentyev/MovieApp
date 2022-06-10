@@ -3,7 +3,6 @@ package ru.myfirstapp.movieapp.data.network.movie
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import ru.myfirstapp.movieapp.domain.model.Movie
 
 interface MoviesApi {
     @GET("movie/top_rated")
