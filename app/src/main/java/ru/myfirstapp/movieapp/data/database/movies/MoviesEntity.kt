@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import ru.myfirstapp.movieapp.data.database.MovieContract
-import ru.myfirstapp.movieapp.domain.model.Genre
 
 @Entity(tableName = MovieContract.Movies.TABLE_NAME)
 data class MoviesEntity(
@@ -26,7 +25,5 @@ data class MoviesEntity(
     @ColumnInfo(name = "minimumAge")
     val minimumAge: Int,
     @ColumnInfo(name = "runtime")
-    val runtime: Int,
-//    @ColumnInfo(name = "genres")
-//    val genres: List<Genre>,
+    val runtime: Int
 )

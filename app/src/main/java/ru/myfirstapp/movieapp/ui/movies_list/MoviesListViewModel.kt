@@ -1,6 +1,7 @@
 package ru.myfirstapp.movieapp.ui.movies_list
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -23,18 +24,25 @@ class MoviesListViewModel(val app: Application) : AndroidViewModel(app) {
     private fun loadMovies() {
         viewModelScope.launch {
             val localMovies = withContext(Dispatchers.IO) {
-                MovieRepository().getMovieFromDatabase(app.applicationContext)
+                MovieRepository.getMovieFromDatabase(app.applicationContext)
             }
             if (localMovies.isNotEmpty()) {
                 _moviesList.value = localMovies
             }
 
-            val movieFromNetwork: List<Movie> = MovieRepository().getMovies()
-
-//            withContext(Dispatchers.IO) {
-//                MovieRepository().setMovieFromDatabase(app, movieFromNetwork)
-//            }
-//            _moviesList.value = movieFromNetwork
+            try {
+                val movieFromNetwork: List<Movie> = MovieRepository.getMovies()
+                withContext(Dispatchers.IO) {
+                    MovieRepository.setMovieInDatabase(app, movieFromNetwork)
+                    _moviesList.postValue(movieFromNetwork)
+                }
+            } catch (error: Throwable) {
+                Log.e(
+                    "MoviesListViewModel",
+                    "Ошибка загрузки из сети ${error.message}",
+                    error
+                )
+            }
         }
     }
 }

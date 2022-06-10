@@ -79,7 +79,6 @@ object MovieMapperData {
             numberOfRatings = movie.numberOfRatings,
             minimumAge = movie.minimumAge,
             runtime = 0, //TODO()
-//            genres = emptyList(), // TODO()
         )
     }
 }

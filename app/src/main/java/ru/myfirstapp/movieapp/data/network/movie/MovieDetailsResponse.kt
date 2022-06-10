@@ -7,7 +7,7 @@ import ru.myfirstapp.movieapp.data.model.GenreData
 @Serializable
 data class MovieDetailsResponse(
     @SerialName("backdrop_path")
-    var backdropPath: String,
+    val backdropPath: String,
     @SerialName("original_language")
     val originalLanguage: String,
     @SerialName("poster_path")

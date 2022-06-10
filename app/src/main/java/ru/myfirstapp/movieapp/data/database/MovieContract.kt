@@ -1,7 +1,5 @@
 package ru.myfirstapp.movieapp.data.database
 
-import android.provider.BaseColumns
-
 object MovieContract {
     const val DATABASE_NAME = "MoviesDataBase"
 
